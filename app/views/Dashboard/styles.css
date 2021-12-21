@@ -1,0 +1,66 @@
+.dashboard {
+    --color-primary: #e8833a;
+    --color-border: #ebe5e5;
+    --color-shadow: #f3efef;
+    --color-text-on-primary: rgba(255, 255, 255, 0.9);
+    margin: auto;
+    background-color: var(--color-background);
+    gap: 30px;
+
+    .card-container {
+        border: 1px solid var(--color-border);
+        background: var(--dui-color-foreground);
+        padding: var(--dui-spacing-medium);
+        width: 50vw;
+        height: 25vh;
+
+        .card-leave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--dui-spacing-large) 0;
+            padding-top: 0;
+
+            .leave-text {
+                cursor: pointer;
+                width: 50%;
+                text-align: center;
+                font-size: var(--dui-font-size-large);
+                font-weight: var(--dui-font-weight-bold);
+            }
+
+            hr {
+                height: 50px;
+            }
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background-color: var(--color-primary);
+            color: var(--color-text-on-primary);
+        }
+    }
+
+    .today-leave-container {
+        display: grid;
+        cursor: pointer;
+        gap: 10px;
+
+        .title {
+            font-size: var(--dui-font-size-extra-large);
+            font-weight: var(--dui-font-weight-bold);
+        }
+
+        .leave-lists {
+            .todayLeaveUser {
+                display: flex;
+                padding: var(--dui-spacing-small) 0;
+                gap: 10px;
+                font-size: var(--dui-font-size-large);
+            }
+        }
+    }
+}

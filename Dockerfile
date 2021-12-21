@@ -11,6 +11,6 @@ WORKDIR /code
 FROM base AS full-client
 
 COPY ./package.json ./yarn.lock /code/
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . /code/

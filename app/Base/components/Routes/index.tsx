@@ -23,9 +23,9 @@ function Routes(props: Props) {
             <Switch>
                 <Route
                     exact
-                    path={routes.home.path}
+                    path={routes.dashboard.path}
                 >
-                    {routes.home.load({ className })}
+                    {routes.dashboard.load({ className })}
                 </Route>
                 <Route
                     exact

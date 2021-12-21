@@ -56,8 +56,8 @@ function Init(props: Props) {
     */
     useEffect(
         () => {
-            setUser({ id: '1', displayName: 'Ram' });
-            setProject({ id: '1', title: 'Ramayan', allowedPermissions: [] });
+            setUser({ id: '1', displayName: 'Barsha' });
+            setProject({ id: '1', title: 'chrono', allowedPermissions: [] });
             setErrored(false);
             setReady(true);
         },
