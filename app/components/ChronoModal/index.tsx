@@ -52,7 +52,6 @@ query ProjectList {
 type ExtraFormField = {
     additionalInformation?: string | undefined | null;
     type: string | undefined;
-    numOfDays?: number | undefined;
     startDate?: number | undefined;
     project?: string | undefined;
     task?: string | undefined;
@@ -60,8 +59,7 @@ type ExtraFormField = {
     user?: string | undefined;
 }
 
-type FormType = PurgeNull<PartialForm<EnumFix<ExtraFormField, 'designation' | 'gender'>>>;
-
+type FormType = PurgeNull<PartialForm<EnumFix<ExtraFormField, 'abc' | 'xyz'>>>;
 type FormSchema = ObjectSchema<FormType>
 type FormSchemaFields = ReturnType<FormSchema['fields']>;
 
@@ -92,6 +90,9 @@ function ChronoModal(props: Props) {
         className,
         handleModalClose,
     } = props;
+
+    const [dateRange, setDateRange] = useState<null>();
+    const [dateLists, setDateLists] = useState<string[]>();
 
     const [tasks, setTasks] = useState<Item[]>([]);
     const [tags, setTags] = useState<Item[]>([]);
@@ -129,11 +130,6 @@ function ChronoModal(props: Props) {
             });
         }
     };
-    // useEffect(() =>{
-    //     if(!loading){
-
-    //     }
-    // },[loading])
 
     return (
 
@@ -189,14 +185,14 @@ function ChronoModal(props: Props) {
                     label="User"
                     placeholder="List of Users"
                 />
-                {/* <DateRangeInput
+                <DateRangeInput
                     className={styles.input}
                     name="date"
                     label="Date"
-                    // value={dateTimestampInSeconds.name}
+                    value={dateRange}
                     onChange={handleModalClose}
-                /> */}
-                {/* {dateLists && dateLists.map((el) => (
+                />
+                {dateLists && dateLists.map((el) => (
                     <RadioInput
                         key={el}
                         label={el}
@@ -207,7 +203,7 @@ function ChronoModal(props: Props) {
                         labelSelector={optionLabelSelector}
                         options={undefined}
                     />
-                ))} */}
+                ))}
             </form>
         </div>
     );
