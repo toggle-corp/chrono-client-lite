@@ -23,7 +23,7 @@ const login = wrap({
 });
 const dashboard = wrap({
     path: '/',
-    title: 'Dashboard',
+    title: 'Report',
     navbarVisibility: true,
     component: lazy(() => import('#views/Dashboard')),
     componentProps: {},

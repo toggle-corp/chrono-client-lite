@@ -35,8 +35,7 @@ const LOGIN = gql`
         login(data: $input) {
         result {
             id
-            firstName
-            lastName
+            username
         }
         ok
         errors

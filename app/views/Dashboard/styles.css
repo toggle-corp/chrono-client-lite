@@ -8,11 +8,15 @@
     gap: 30px;
 
     .card-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: var(--dui-spacing-large);
         border: 1px solid var(--color-border);
         background: var(--dui-color-foreground);
         padding: var(--dui-spacing-medium);
-        width: 50vw;
-        height: 25vh;
+        width: 75vw;
+        height: 20vh;
 
         .card-leave {
             display: flex;
@@ -44,23 +48,31 @@
         }
     }
 
-    .today-leave-container {
-        display: grid;
-        cursor: pointer;
-        gap: 10px;
+    .table-list-container {
+        /* display: flex; */
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--color-border);
+        background: var(--dui-color-foreground);
+        padding: var(--dui-spacing-medium);
+        width: 75vw;
+        height: 35vh;
+
+        .table-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: var(--dui-spacing-large);
+        }
+        .drop__menu {
+            padding: var(--dui-spacing-medium);
+        }
 
         .title {
             font-size: var(--dui-font-size-extra-large);
             font-weight: var(--dui-font-weight-bold);
         }
-
-        .leave-lists {
-            .todayLeaveUser {
-                display: flex;
-                padding: var(--dui-spacing-small) 0;
-                gap: 10px;
-                font-size: var(--dui-font-size-large);
-            }
+        .drop__toggle--caret {
+            display: flex;
         }
     }
 }
