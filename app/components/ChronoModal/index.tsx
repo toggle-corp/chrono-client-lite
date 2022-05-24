@@ -1,13 +1,11 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     DateRangeInput,
     MultiSelectInput,
-    RadioInput,
     SelectInput,
 } from '@the-deep/deep-ui';
 import {
     gql,
-    useMutation,
     useQuery,
 } from '@apollo/client';
 import {
@@ -53,6 +51,7 @@ type ExtraFormField = {
     additionalInformation?: string | undefined | null;
     type: string | undefined;
     startDate?: number | undefined;
+    endDate?: number | undefined;
     project?: string | undefined;
     task?: string | undefined;
     tag?: string | undefined;
@@ -82,12 +81,14 @@ interface Item {
 
 interface Props {
     className?: string;
+    modalShown?: boolean;
     handleModalClose: () => void;
 }
 
 function ChronoModal(props: Props) {
     const {
         className,
+        modalShown,
         handleModalClose,
     } = props;
 
@@ -96,6 +97,7 @@ function ChronoModal(props: Props) {
 
     const [tasks, setTasks] = useState<Item[]>([]);
     const [tags, setTags] = useState<Item[]>([]);
+    const [users, setUser] = useState<Item[]>([]);
     const [selectedProjects, setSelectedProjects] = useState<number[]>([]);
 
     const {
@@ -119,6 +121,7 @@ function ChronoModal(props: Props) {
         },
         [],
     );
+    console.log('users', users);
 
     const handleInputChange = (d: number[], name: string) => {
         if (name === 'projects') {
@@ -129,10 +132,40 @@ function ChronoModal(props: Props) {
                 setTasks([...x.tasks, ...tasks]);
             });
         }
+        if (name === 'tasks') {
+            const tsk = projects?.projects?.results?.filter((x: any) => d.includes(x.id));
+            setTasks(d);
+            tsk?.forEach((x: any) => {
+                setTags([...x.tags, ...tags]);
+            });
+        }
+        if (name === 'tags') {
+            const tag = projects?.projects?.results?.filter((x: any) => d.includes(x.id));
+            setUser(d);
+            tag?.forEach((x: any) => {
+                setUser([...x.users, ...users]);
+            });
+            console.log('users', users);
+        }
     };
 
-    return (
+    // const handleTasksInputChange = (d: number[], name: string) => {
+    //     if (name === 'tasks') {
+    //         const tasks = projects?.projects?.results?.filter((x: any) => d.includes(x.id));
+    //         setTasks(d);
+    //     }
+    // }
 
+    const handleDateChange = useCallback(
+        (e) => {
+            setDateRange(e);
+            const dayList = getDaysArray(new Date(e.startDate), new Date(e.endDate));
+            setDateLists(dayList);
+        },
+        [getDaysArray],
+    );
+
+    return (
         <div>
             <form
                 className={_cs(
@@ -155,10 +188,10 @@ function ChronoModal(props: Props) {
                 <MultiSelectInput
                     className={styles.input}
                     name="tasks"
-                    value={[]}
-                    onChange={handleModalClose}
                     keySelector={optionKeySelector}
                     labelSelector={optionLabelSelector}
+                    value={tasks}
+                    onChange={handleInputChange}
                     options={tasks}
                     label="Task"
                     placeholder="List of Tasks"
@@ -166,7 +199,7 @@ function ChronoModal(props: Props) {
                 <MultiSelectInput
                     className={styles.input}
                     name="tags"
-                    value={[]}
+                    value={tags}
                     onChange={handleModalClose}
                     keySelector={optionKeySelector}
                     labelSelector={optionLabelSelector}
@@ -178,7 +211,7 @@ function ChronoModal(props: Props) {
                     className={styles.input}
                     keySelector={optionKeySelector}
                     labelSelector={optionLabelSelector}
-                    value={[]}
+                    value={users}
                     onChange={handleModalClose}
                     name="users"
                     options={undefined}
@@ -187,23 +220,12 @@ function ChronoModal(props: Props) {
                 />
                 <DateRangeInput
                     className={styles.input}
+                    variant="form"
                     name="date"
                     label="Date"
                     value={dateRange}
-                    onChange={handleModalClose}
+                    onChange={handleDateChange}
                 />
-                {dateLists && dateLists.map((el) => (
-                    <RadioInput
-                        key={el}
-                        label={el}
-                        name={el}
-                        value={undefined}
-                        onChange={handleModalClose}
-                        keySelector={optionKeySelector}
-                        labelSelector={optionLabelSelector}
-                        options={undefined}
-                    />
-                ))}
             </form>
         </div>
     );
