@@ -70,7 +70,7 @@ function Navbar(props: Props) {
                 <div className={styles.navLinks}>
                     <SmartNavLink
                         exact
-                        route={route.home}
+                        route={route.myChrono}
                         className={styles.link}
                     />
                 </div>

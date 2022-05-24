@@ -21,6 +21,7 @@ import Routes from '#base/components/Routes';
 import { User } from '#base/types/user';
 import apolloConfig from '#base/configs/apollo';
 import { trackingId, gaConfig } from '#base/configs/googleAnalytics';
+import SideNav from '#components/SideNav';
 
 import styles from './styles.css';
 
@@ -178,6 +179,12 @@ function Base() {
                                         <Navbar
                                             className={_cs(
                                                 styles.navbar,
+                                                !navbarVisibility && styles.hidden,
+                                            )}
+                                        />
+                                        <SideNav
+                                            className={_cs(
+                                                styles.sideNav,
                                                 !navbarVisibility && styles.hidden,
                                             )}
                                         />

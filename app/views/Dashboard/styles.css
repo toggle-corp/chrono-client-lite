@@ -1,0 +1,78 @@
+.dashboard {
+    --color-primary: #e8833a;
+    --color-border: #ebe5e5;
+    --color-shadow: #f3efef;
+    --color-text-on-primary: rgba(255, 255, 255, 0.9);
+    margin: auto;
+    background-color: var(--color-background);
+    gap: 30px;
+
+    .card-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: var(--dui-spacing-large);
+        border: 1px solid var(--color-border);
+        background: var(--dui-color-foreground);
+        padding: var(--dui-spacing-medium);
+        width: 75vw;
+        height: 20vh;
+
+        .card-leave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--dui-spacing-large) 0;
+            padding-top: 0;
+
+            .leave-text {
+                cursor: pointer;
+                width: 50%;
+                text-align: center;
+                font-size: var(--dui-font-size-large);
+                font-weight: var(--dui-font-weight-bold);
+            }
+
+            hr {
+                height: 50px;
+            }
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background-color: var(--color-primary);
+            color: var(--color-text-on-primary);
+        }
+    }
+
+    .table-list-container {
+        /* display: flex; */
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--color-border);
+        background: var(--dui-color-foreground);
+        padding: var(--dui-spacing-medium);
+        width: 75vw;
+        height: 35vh;
+
+        .table-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: var(--dui-spacing-large);
+        }
+        .drop__menu {
+            padding: var(--dui-spacing-medium);
+        }
+
+        .title {
+            font-size: var(--dui-font-size-extra-large);
+            font-weight: var(--dui-font-weight-bold);
+        }
+        .drop__toggle--caret {
+            display: flex;
+        }
+    }
+}
